@@ -22,18 +22,18 @@ export type Course = {
   completedExercises?: CompletedExercises[];
 };
 
-type CompletedExercises = {
+export type CompletedExercises = {
   chapterId: number;
   courseId: number;
   exerciseId: number;
 };
 
-type CourseEnrolledInfo = {
+export type CourseEnrolledInfo = {
   xpEarned: number;
   enrolledDate: any;
 };
 
-type Chapter = {
+export type Chapter = {
   chapterId: number;
   courseId: number;
   desc: string;
@@ -42,7 +42,7 @@ type Chapter = {
   exercises: exercise[];
 };
 
-type exercise = {
+export type exercise = {
   name: string;
   slug: string;
   xp: number;

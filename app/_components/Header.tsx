@@ -1,19 +1,17 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import React from "react";
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
+  NavigationMenuTrigger
 } from "@/components/ui/navigation-menu";
-import Link from "next/link";
 import { UserButton, useUser } from "@clerk/nextjs";
+import Image from "next/image";
+import Link from "next/link";
+import { useParams, usePathname } from "next/navigation";
 
 const courses = [
   {
@@ -74,15 +72,18 @@ const courses = [
 
 function Header() {
   const { user } = useUser();
+  const path = usePathname();
+  console.log(path);
+  const { exerciseslug } = useParams();
 
   return (
     <div className="p-4 max-w-7xl flex justify-between items-center w-full">
       <div className="flex gap-2 items-center">
-        <Image src={"/logo.png"} alt="logo" width={40} height={40} />
-        <h2 className="font-bold text-2xl font-game">CodeBox</h2>
+        <Image src={"/logo.png"} alt="logo" width={50} height={50} />
+        <h2 className="font-bold text-3xl font-game">CodeBox</h2>
       </div>
       {/* Navbar */}
-      <NavigationMenu>
+      {!exerciseslug ? <NavigationMenu>
         <NavigationMenuList className="gap-8">
           <NavigationMenuItem>
             <NavigationMenuTrigger>Courses</NavigationMenuTrigger>
@@ -123,6 +124,9 @@ function Header() {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
+      :
+      <h2 className="text-3xl font-game">{exerciseslug?.toString().replaceAll("-"," ").toLocaleUpperCase()}</h2>
+      }
 
       {/* Signup Button */}
       {!user ? (
@@ -133,10 +137,10 @@ function Header() {
         </Link>
       ) : (
         <div className="flex gap-4 items-center">
-          <Link href={'/dashboard'}>
-          <Button className="font-game text-2xl" variant={"pixel"}>
-            Dashboard
-          </Button>
+          <Link href={"/dashboard"}>
+            <Button className="font-game text-2xl" variant={"pixel"}>
+              Dashboard
+            </Button>
           </Link>
           <UserButton></UserButton>
         </div>
