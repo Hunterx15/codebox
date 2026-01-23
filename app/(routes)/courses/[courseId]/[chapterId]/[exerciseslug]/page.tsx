@@ -4,8 +4,12 @@ import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import SplitterLayout from "react-splitter-layout";
 import "react-splitter-layout/lib/index.css";
-import { exercise } from "../../../_components/CourseList";
+import { CompletedExercises, exercise } from "../../../_components/CourseList";
 import ContentSection from "./_components/ContentSection";
+import CodeEditor from "./_components/CodeEditor";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import Link from "next/link";
 
 export type CourseExercise = {
   chapterId: number;
@@ -14,6 +18,7 @@ export type CourseExercise = {
   name: string;
   exercises: exercise[];
   exerciseData: ExerciseData;
+  completedExercise: CompletedExercises[];
 };
 
 type ExerciseData = {
@@ -37,7 +42,13 @@ function Playground() {
 
   const [loading, setLoading] = useState(false);
 
-  const [courseExerciseData, setCourseExerciseData] = useState<CourseExercise>();
+  const [courseExerciseData, setCourseExerciseData] =
+    useState<CourseExercise>();
+
+  const [exerciseInfo, setExerciseInfo] = useState<exercise>();
+
+  const [nextButtonRoute, setNextButtonRoute] = useState<string>();
+  const [prevButtonRoute, setPrevButtonRoute] = useState<string>();
 
   useEffect(() => {
     GetExerciseCourseDetail();
@@ -52,19 +63,91 @@ function Playground() {
     });
 
     console.log(result.data);
-    setCourseExerciseData(result.data)
+    setCourseExerciseData(result.data);
     setLoading(false);
+  };
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "empty";
+    };
+  }, []);
+
+  useEffect(() => {
+    courseExerciseData && GetExerciseDetail();
+  }, [courseExerciseData]);
+
+  useEffect(() => {
+    courseExerciseData && GetPrevNextButtonRoute();
+  }, [courseExerciseData]);
+
+  const GetExerciseDetail = () => {
+    const exerciseInfo = courseExerciseData?.exercises?.find(
+      (item) => item.slug == exerciseslug,
+    );
+    setExerciseInfo(exerciseInfo);
+  };
+
+  const GetPrevNextButtonRoute = () => {
+    // Current Index of Exercise
+    const currentExerciseIndex =
+      courseExerciseData?.exercises?.findIndex(
+        (item) => item.slug == exerciseslug,
+      ) ?? 0;
+    const NextExercise =
+      courseExerciseData?.exercises[currentExerciseIndex + 1]?.slug;
+    const PrevExercise =
+      courseExerciseData?.exercises[currentExerciseIndex - 1]?.slug;
+    // console.log(NextExercise, PrevExercise);
+
+    setNextButtonRoute(
+      NextExercise
+        ? "/courses/" + courseId + "/" + chapterId + "/" + NextExercise
+        : undefined,
+    );
+    setPrevButtonRoute(
+      PrevExercise
+        ? "/courses/" + courseId + "/" + chapterId + "/" + PrevExercise
+        : undefined,
+    );
   };
 
   return (
     <div className="border-t-4 ">
       <SplitterLayout percentage primaryMinSize={40} secondaryInitialSize={60}>
         <div>
-          <ContentSection courseExerciseData={courseExerciseData}
-          loading={loading}/>
+          <ContentSection
+            courseExerciseData={courseExerciseData}
+            loading={loading}
+          />
         </div>
-        <div>Pane 2</div>
+        <div>
+          <CodeEditor
+            courseExerciseData={courseExerciseData}
+            loading={loading}
+          />
+        </div>
       </SplitterLayout>
+      <div className="font-game fixed bottom-0 w-full bg-zinc-900 flex p-4 justify-between items-center">
+        <Link href={prevButtonRoute ?? "/courses/" + courseId}>
+          <Button variant={"pixel"} className="text-xl">
+            Previous
+          </Button>
+        </Link>
+        <div className="flex gap-3 items-center">
+          <Image src={"/star.png"} alt="star" width={40} height={40} />
+          <h2 className="text-2xl">
+            You can Earn <span className="text-4xl">{exerciseInfo?.xp}</span> Xp
+          </h2>
+        </div>
+        <Link href={nextButtonRoute ?? "/courses/" + courseId}>
+          <Button variant={"pixel"} className="text-xl">
+            Next
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 }
