@@ -50,13 +50,15 @@ function CourseChapters({ loading, courseDetail }: Props) {
     return currentExerciseNumber === lastCompletedNumber + 2;
   };
 
-  const isExerciseCompleted=(chapterId:number,exerciseId:number)=>{
-    const completeChapters=courseDetail?.completedExercises;
+  const isExerciseCompleted = (chapterId: number, exerciseId: number) => {
+    const completeChapters = courseDetail?.completedExercises;
 
-    const completeChapter = completeChapters?.find(item=>item.chapterId==chapterId&& item.exerciseId==exerciseId)
+    const completeChapter = completeChapters?.find(
+      (item) => item.chapterId == chapterId && item.exerciseId == exerciseId,
+    );
 
-    return completeChapter ? true : false
-  }
+    return completeChapter ? true : false;
+  };
 
   return (
     <div>
@@ -95,24 +97,40 @@ function CourseChapters({ loading, courseDetail }: Props) {
                           </h2>
                           <h2 className="text-3xl">{exc.name}</h2>
                         </div>
-                        {
-                        }
-                        {EnableExercise(index,indexExc,chapter?.exercises?.length)?
-                        <Link href={ '/courses'+'/'+courseDetail?.courseId+'/'+chapter?.chapterId+'/'+exc?.slug}> 
-                        <Button variant={'pixel'}>{exc?.xp} xp</Button>
-                        </Link>
-                        : isExerciseCompleted(chapter?.chapterId,indexExc+1)?
-                        <Button variant={'pixel'} className="bg-green-600">Completed</Button>
-                        :<Tooltip>
-                          <TooltipTrigger asChild>
-                            <Button variant={"pixelDisabled"}>???</Button>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p className="font-game text-lg">
-                              Please Enroll First
-                            </p>
-                          </TooltipContent>
-                        </Tooltip>}
+                        {}
+                        {isExerciseCompleted(
+                          chapter?.chapterId,
+                          indexExc + 1,
+                        ) ? (
+                          <Button variant={"pixel"} className="bg-green-600">
+                            Completed
+                          </Button>
+                        ) : courseDetail?.userEnrolled ? (
+                          <Link
+                            href={
+                              "/courses" +
+                              "/" +
+                              courseDetail?.courseId +
+                              "/" +
+                              chapter?.chapterId +
+                              "/" +
+                              exc?.slug
+                            }
+                          >
+                            <Button variant={"pixel"}>{exc?.xp} xp</Button>
+                          </Link>
+                        ) : (
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Button variant={"pixelDisabled"}>???</Button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p className="font-game text-lg">
+                                Please Enroll First
+                              </p>
+                            </TooltipContent>
+                          </Tooltip>
+                        )}
                       </div>
                     ))}
                   </div>
