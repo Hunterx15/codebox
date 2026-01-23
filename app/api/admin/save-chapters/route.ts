@@ -3,161 +3,170 @@ import { CourseChaptersTable } from "@/config/schema"
 import { NextRequest, NextResponse } from "next/server"
 
 const DATA = 
-[
-  {
-    "id": 1,
-    "name": "Introduction to CSS",
-    "desc": "Understand what CSS is and how it styles web pages.",
-    "exercises": [
-      { "name": "What is CSS?", "slug": "what-is-css", "xp": 20, "difficulty": "easy" },
-      { "name": "Why CSS is Needed", "slug": "why-css-is-needed", "xp": 20, "difficulty": "easy" },
-      { "name": "CSS Syntax", "slug": "css-syntax", "xp": 20, "difficulty": "easy" },
-      { "name": "CSS Comments", "slug": "css-comments", "xp": 15, "difficulty": "easy" },
-      { "name": "First CSS Style", "slug": "first-css-style", "xp": 20, "difficulty": "easy" }
+    [
+        {
+            "id": 1,
+            "name": "Introduction to HTML",
+            "desc": "Discover the foundation of every webpage and learn how HTML shapes the digital world.",
+            "exercises": [
+            {"name": "Explore the Web Skeleton", "slug": "explore-the-web-skeleton", "xp": 20, "difficulty": "easy"},
+            {"name": "Build Your Base Camp", "slug": "build-your-base-camp", "xp": 25, "difficulty": "easy"},
+            {"name": "Name Your World", "slug": "name-your-world", "xp": 15, "difficulty": "easy"},
+            {"name": "Break & Repair", "slug": "break-and-repair", "xp": 20, "difficulty": "easy"},
+            {"name": "HTML Detective", "slug": "html-detective", "xp": 20, "difficulty": "easy"},
+            {"name": "Element Collector", "slug": "element-collector", "xp": 25, "difficulty": "easy"}
+            ]
+        },
+        {
+            "id": 2,
+            "name": "HTML Boilerplate",
+            "desc": "Understand the core structure that every HTML document begins with.",
+            "exercises": [
+            {"name": "Build the Core Structure", "slug": "build-the-core-structure", "xp": 35, "difficulty": "medium"},
+            {"name": "Fix the Broken Blueprint", "slug": "fix-the-broken-blueprint", "xp": 30, "difficulty": "easy"},
+            {"name": "Boost Meta Power", "slug": "boost-meta-power", "xp": 20, "difficulty": "easy"},
+            {"name": "Add Language Identity", "slug": "add-language-identity", "xp": 10, "difficulty": "easy"},
+            {"name": "Viewport Setup", "slug": "viewport-setup", "xp": 20, "difficulty": "easy"},
+            {"name": "Author Credit", "slug": "author-credit", "xp": 15, "difficulty": "easy"}
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Head & Body Tags",
+            "desc": "Learn the difference between behind-the-scenes metadata and visible page content.",
+            "exercises": [
+            {"name": "Mind vs Body", "slug": "mind-vs-body", "xp": 20, "difficulty": "easy"},
+            {"name": "Activate Styles", "slug": "activate-styles", "xp": 30, "difficulty": "medium"},
+            {"name": "Display Your Content", "slug": "display-your-content", "xp": 15, "difficulty": "easy"},
+            {"name": "Add External Script", "slug": "add-external-script", "xp": 20, "difficulty": "easy"},
+            {"name": "Meta Collection", "slug": "meta-collection", "xp": 25, "difficulty": "easy"},
+            {"name": "Body Structure Challenge", "slug": "body-structure-challenge", "xp": 25, "difficulty": "easy"}
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Text Formatting",
+            "desc": "Format your content with headings, paragraphs, bold, italic, and more.",
+            "exercises": [
+            {"name": "Create the Text Realm", "slug": "create-the-text-realm", "xp": 30, "difficulty": "easy"},
+            {"name": "Power Words", "slug": "power-words", "xp": 20, "difficulty": "easy"},
+            {"name": "Build a Story Block", "slug": "build-a-story-block", "xp": 30, "difficulty": "medium"},
+            {"name": "Line Break Mastery", "slug": "line-break-mastery", "xp": 15, "difficulty": "easy"},
+            {"name": "Quote Chamber", "slug": "quote-chamber", "xp": 25, "difficulty": "easy"},
+            {"name": "Code Snippet Display", "slug": "code-snippet-display", "xp": 30, "difficulty": "medium"}
+            ]
+        },
+        {
+            "id": 5,
+            "name": "Links & Navigation",
+            "desc": "Create portals between pages and build simple navigation.",
+            "exercises": [
+            {"name": "Create a Warp Gate", "slug": "create-a-warp-gate", "xp": 20, "difficulty": "easy"},
+            {"name": "Open a New Dimension", "slug": "open-a-new-dimension", "xp": 25, "difficulty": "easy"},
+            {"name": "Navigation Builder", "slug": "navigation-builder", "xp": 40, "difficulty": "medium"},
+            {"name": "Anchor Teleport", "slug": "anchor-teleport", "xp": 20, "difficulty": "easy"},
+            {"name": "Email Portal", "slug": "email-portal", "xp": 20, "difficulty": "easy"},
+            {"name": "Button Link Trick", "slug": "button-link-trick", "xp": 25, "difficulty": "medium"}
+            ]
+        },
+        {
+            "id": 6,
+            "name": "Images",
+            "desc": "Display images, control sizing, and optimize accessibility.",
+            "exercises": [
+            {"name": "Summon an Image", "slug": "summon-an-image", "xp": 20, "difficulty": "easy"},
+            {"name": "Vision for All", "slug": "vision-for-all", "xp": 15, "difficulty": "easy"},
+            {"name": "Image Grid Challenge", "slug": "image-grid-challenge", "xp": 35, "difficulty": "medium"},
+            {"name": "Resize Hero", "slug": "resize-hero", "xp": 20, "difficulty": "easy"},
+            {"name": "Caption Creator", "slug": "caption-creator", "xp": 25, "difficulty": "medium"},
+            {"name": "Broken Image Test", "slug": "broken-image-test", "xp": 15, "difficulty": "easy"}
+            ]
+        },
+        {
+            "id": 7,
+            "name": "Lists",
+            "desc": "Structure grouped information using ordered, unordered, and description lists.",
+            "exercises": [
+            {"name": "Bullet Creator", "slug": "bullet-creator", "xp": 20, "difficulty": "easy"},
+            {"name": "Number Builder", "slug": "number-builder", "xp": 20, "difficulty": "easy"},
+            {"name": "Nested List Challenge", "slug": "nested-list-challenge", "xp": 35, "difficulty": "medium"},
+            {"name": "Description Vault", "slug": "description-vault", "xp": 25, "difficulty": "easy"},
+            {"name": "Task Checklist", "slug": "task-checklist", "xp": 20, "difficulty": "easy"},
+            {"name": "Navigation with Lists", "slug": "navigation-with-lists", "xp": 35, "difficulty": "medium"}
+            ]
+        },
+        {
+            "id": 8,
+            "name": "Tables",
+            "desc": "Represent information in structured grid format.",
+            "exercises": [
+            {"name": "Table Blueprint", "slug": "table-blueprint", "xp": 30, "difficulty": "medium"},
+            {"name": "Add Column Headers", "slug": "add-column-headers", "xp": 20, "difficulty": "easy"},
+            {"name": "Merge the Cells", "slug": "merge-the-cells", "xp": 35, "difficulty": "medium"},
+            {"name": "Student Report Table", "slug": "student-report-table", "xp": 25, "difficulty": "easy"},
+            {"name": "Border Styling", "slug": "border-styling", "xp": 20, "difficulty": "easy"},
+            {"name": "Header Footer Rows", "slug": "header-footer-rows", "xp": 30, "difficulty": "medium"}
+            ]
+        },
+        {
+            "id": 9,
+            "name": "Forms Basics",
+            "desc": "Collect user input using form controls like input, labels, and buttons.",
+            "exercises": [
+            {"name": "Create a Login Portal", "slug": "create-a-login-portal", "xp": 40, "difficulty": "medium"},
+            {"name": "Design a Contact Form", "slug": "design-a-contact-form", "xp": 45, "difficulty": "medium"},
+            {"name": "Placeholder Magic", "slug": "placeholder-magic", "xp": 15, "difficulty": "easy"},
+            {"name": "Label Linker", "slug": "label-linker", "xp": 20, "difficulty": "easy"},
+            {"name": "Choose Wisely", "slug": "choose-wisely", "xp": 25, "difficulty": "easy"},
+            {"name": "Dropdown Selector", "slug": "dropdown-selector", "xp": 30, "difficulty": "medium"}
+            ]
+        },
+        {
+            "id": 10,
+            "name": "Semantic HTML",
+            "desc": "Use meaningful HTML elements to improve page structure and accessibility.",
+            "exercises": [
+            {"name": "Build the Layout", "slug": "build-the-layout", "xp": 35, "difficulty": "medium"},
+            {"name": "Blog Structure", "slug": "blog-structure", "xp": 40, "difficulty": "medium"},
+            {"name": "Sidebar Creator", "slug": "sidebar-creator", "xp": 25, "difficulty": "easy"},
+            {"name": "Navigation Map", "slug": "navigation-map", "xp": 35, "difficulty": "medium"},
+            {"name": "Figure & Caption", "slug": "figure-and-caption", "xp": 25, "difficulty": "easy"},
+            {"name": "Semantic Rebuild", "slug": "semantic-rebuild", "xp": 40, "difficulty": "medium"}
+            ]
+        },
+        {
+            "id": 11,
+            "name": "Audio & Video",
+            "desc": "Add multimedia components for richer experiences.",
+            "exercises": [
+            {"name": "Play the Sound", "slug": "play-the-sound", "xp": 25, "difficulty": "easy"},
+            {"name": "Video Portal", "slug": "video-portal", "xp": 30, "difficulty": "medium"},
+            {"name": "Autoplay Test", "slug": "autoplay-test", "xp": 20, "difficulty": "easy"},
+            {"name": "Add Subtitles", "slug": "add-subtitles", "xp": 40, "difficulty": "medium"},
+            {"name": "Audio Playlist", "slug": "audio-playlist", "xp": 20, "difficulty": "easy"},
+            {"name": "Thumbnail Setup", "slug": "thumbnail-setup", "xp": 25, "difficulty": "easy"}
+            ]
+        },
+        {
+            "id": 12,
+            "name": "HTML Best Practices",
+            "desc": "Write clear, clean, and accessible HTML optimized for real-world use.",
+            "exercises": [
+            {"name": "Code Cleanup", "slug": "code-cleanup", "xp": 20, "difficulty": "easy"},
+            {"name": "Accessibility Upgrade", "slug": "accessibility-upgrade", "xp": 35, "difficulty": "medium"},
+            {"name": "Alt Text Review", "slug": "alt-text-review", "xp": 20, "difficulty": "easy"},
+            {"name": "Heading Order Fix", "slug": "heading-order-fix", "xp": 25, "difficulty": "easy"},
+            {"name": "Link Check", "slug": "link-check", "xp": 20, "difficulty": "easy"},
+            {"name": "Semantic Improvement", "slug": "semantic-improvement", "xp": 40, "difficulty": "medium"}
+            ]
+        }
     ]
-  },
-  {
-    "id": 2,
-    "name": "Ways to Apply CSS",
-    "desc": "Learn different methods to apply CSS to HTML.",
-    "exercises": [
-      { "name": "Inline CSS", "slug": "inline-css", "xp": 15, "difficulty": "easy" },
-      { "name": "Internal CSS", "slug": "internal-css", "xp": 20, "difficulty": "easy" },
-      { "name": "External CSS", "slug": "external-css", "xp": 20, "difficulty": "easy" },
-      { "name": "CSS Priority Order", "slug": "css-priority-order", "xp": 25, "difficulty": "easy" },
-      { "name": "Style Cleanup", "slug": "style-cleanup", "xp": 20, "difficulty": "easy" }
-    ]
-  },
-  {
-    "id": 3,
-    "name": "Selectors",
-    "desc": "Target HTML elements precisely using selectors.",
-    "exercises": [
-      { "name": "Element Selector", "slug": "element-selector", "xp": 20, "difficulty": "easy" },
-      { "name": "Class Selector", "slug": "class-selector", "xp": 20, "difficulty": "easy" },
-      { "name": "ID Selector", "slug": "id-selector", "xp": 20, "difficulty": "easy" },
-      { "name": "Group Selector", "slug": "group-selector", "xp": 25, "difficulty": "easy" },
-      { "name": "Selector Practice", "slug": "selector-practice", "xp": 30, "difficulty": "medium" }
-    ]
-  },
-  {
-    "id": 4,
-    "name": "Colors & Units",
-    "desc": "Work with colors and measurement units.",
-    "exercises": [
-      { "name": "Color Names", "slug": "color-names", "xp": 15, "difficulty": "easy" },
-      { "name": "HEX & RGB", "slug": "hex-and-rgb", "xp": 20, "difficulty": "easy" },
-      { "name": "Opacity & Alpha", "slug": "opacity-and-alpha", "xp": 20, "difficulty": "easy" },
-      { "name": "PX vs EM", "slug": "px-vs-em", "xp": 25, "difficulty": "easy" },
-      { "name": "REM Units", "slug": "rem-units", "xp": 25, "difficulty": "easy" }
-    ]
-  },
-  {
-    "id": 5,
-    "name": "Box Model",
-    "desc": "Understand spacing and element sizing.",
-    "exercises": [
-      { "name": "Margin Basics", "slug": "margin-basics", "xp": 20, "difficulty": "easy" },
-      { "name": "Padding Basics", "slug": "padding-basics", "xp": 20, "difficulty": "easy" },
-      { "name": "Border Styles", "slug": "border-styles", "xp": 20, "difficulty": "easy" },
-      { "name": "Box Sizing", "slug": "box-sizing", "xp": 25, "difficulty": "easy" },
-      { "name": "Box Model Fix", "slug": "box-model-fix", "xp": 30, "difficulty": "medium" }
-    ]
-  },
-  {
-    "id": 6,
-    "name": "Typography",
-    "desc": "Style text for readability and design.",
-    "exercises": [
-      { "name": "Font Family", "slug": "font-family", "xp": 20, "difficulty": "easy" },
-      { "name": "Font Size & Weight", "slug": "font-size-weight", "xp": 20, "difficulty": "easy" },
-      { "name": "Text Alignment", "slug": "text-alignment", "xp": 20, "difficulty": "easy" },
-      { "name": "Line Height", "slug": "line-height", "xp": 25, "difficulty": "easy" },
-      { "name": "Text Styling Challenge", "slug": "text-styling-challenge", "xp": 30, "difficulty": "medium" }
-    ]
-  },
-  {
-    "id": 7,
-    "name": "Display & Position",
-    "desc": "Control layout and positioning.",
-    "exercises": [
-      { "name": "Display Property", "slug": "display-property", "xp": 20, "difficulty": "easy" },
-      { "name": "Position Property", "slug": "position-property", "xp": 30, "difficulty": "medium" },
-      { "name": "Z-Index", "slug": "z-index", "xp": 25, "difficulty": "easy" },
-      { "name": "Overflow Control", "slug": "overflow-control", "xp": 20, "difficulty": "easy" },
-      { "name": "Position Practice", "slug": "position-practice", "xp": 35, "difficulty": "medium" }
-    ]
-  },
-  {
-    "id": 8,
-    "name": "Flexbox",
-    "desc": "Build flexible layouts easily.",
-    "exercises": [
-      { "name": "Flex Container", "slug": "flex-container", "xp": 25, "difficulty": "easy" },
-      { "name": "Flex Direction", "slug": "flex-direction", "xp": 25, "difficulty": "easy" },
-      { "name": "Justify Content", "slug": "justify-content", "xp": 30, "difficulty": "medium" },
-      { "name": "Align Items", "slug": "align-items", "xp": 30, "difficulty": "medium" },
-      { "name": "Flexbox Layout Challenge", "slug": "flexbox-layout-challenge", "xp": 40, "difficulty": "medium" }
-    ]
-  },
-  {
-    "id": 9,
-    "name": "CSS Grid",
-    "desc": "Create powerful two-dimensional layouts.",
-    "exercises": [
-      { "name": "Grid Basics", "slug": "grid-basics", "xp": 30, "difficulty": "medium" },
-      { "name": "Grid Columns & Rows", "slug": "grid-columns-rows", "xp": 30, "difficulty": "medium" },
-      { "name": "Grid Gap", "slug": "grid-gap", "xp": 25, "difficulty": "easy" },
-      { "name": "Grid Areas", "slug": "grid-areas", "xp": 35, "difficulty": "medium" },
-      { "name": "Grid Layout Challenge", "slug": "grid-layout-challenge", "xp": 40, "difficulty": "medium" }
-    ]
-  },
-  {
-    "id": 10,
-    "name": "Responsive Design",
-    "desc": "Make layouts adapt to different screen sizes.",
-    "exercises": [
-      { "name": "Viewport Basics", "slug": "viewport-basics", "xp": 20, "difficulty": "easy" },
-      { "name": "Media Queries", "slug": "media-queries", "xp": 30, "difficulty": "medium" },
-      { "name": "Mobile First Design", "slug": "mobile-first-design", "xp": 30, "difficulty": "medium" },
-      { "name": "Responsive Images", "slug": "responsive-images", "xp": 25, "difficulty": "easy" },
-      { "name": "Responsive Layout Challenge", "slug": "responsive-layout-challenge", "xp": 40, "difficulty": "medium" }
-    ]
-  },
-  {
-    "id": 11,
-    "name": "Transitions & Animations",
-    "desc": "Add motion and interactivity.",
-    "exercises": [
-      { "name": "CSS Transitions", "slug": "css-transitions", "xp": 25, "difficulty": "easy" },
-      { "name": "Transform Property", "slug": "transform-property", "xp": 25, "difficulty": "easy" },
-      { "name": "Keyframe Animations", "slug": "keyframe-animations", "xp": 35, "difficulty": "medium" },
-      { "name": "Animation Timing", "slug": "animation-timing", "xp": 30, "difficulty": "medium" },
-      { "name": "Animation Practice", "slug": "animation-practice", "xp": 35, "difficulty": "medium" }
-    ]
-  },
-  {
-    "id": 12,
-    "name": "CSS Best Practices",
-    "desc": "Write clean, maintainable, and scalable CSS.",
-    "exercises": [
-      { "name": "Class Naming Conventions", "slug": "class-naming-conventions", "xp": 25, "difficulty": "easy" },
-      { "name": "Avoid Inline Styles", "slug": "avoid-inline-styles", "xp": 20, "difficulty": "easy" },
-      { "name": "Reuse Styles", "slug": "reuse-styles", "xp": 30, "difficulty": "medium" },
-      { "name": "CSS Organization", "slug": "css-organization", "xp": 30, "difficulty": "medium" },
-      { "name": "Production Checklist", "slug": "css-production-checklist", "xp": 30, "difficulty": "medium" }
-    ]
-  }
-]
-
-
-
 
 
 export async function GET(req: NextRequest) {
     DATA.forEach(async (item) => {
         await db.insert(CourseChaptersTable).values({
-            courseId: 3, //Change Course ID depends on course info,
+            courseId: 2, //Change Course ID depends on course info,
             desc: item?.desc,
             exercises: item.exercises,
             name: item?.name,

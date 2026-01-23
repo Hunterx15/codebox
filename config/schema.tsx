@@ -40,3 +40,20 @@ export const EnrolledCourseTable = pgTable("enrollCourse", {
   enrolledDate: timestamp().defaultNow(),
   xpEarned: integer(),
 });
+
+export const CompletedExerciseTable = pgTable("completedExercise", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  courseId: integer(),
+  chapterId: integer(),
+  exerciseId: integer(),
+  userId: varchar(),
+});
+
+export const ExerciseTable = pgTable("exercise", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  courseId: integer(),
+  chapterId: integer(),
+  exerciseId: varchar(),
+  exercisesContent: json(),
+  exerciseName: varchar(), 
+});

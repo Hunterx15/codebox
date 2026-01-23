@@ -13,6 +13,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import Link from "next/link";
 
 type Props = {
   loading: boolean;
@@ -23,6 +24,39 @@ function CourseChapters({ loading, courseDetail }: Props) {
   const sortedChapters = [...(courseDetail?.chapters ?? [])].sort(
     (a, b) => a.chapterId - b.chapterId,
   );
+
+  const EnableExercise = (
+    chapterIndex: number,
+    exerciseIndex: number,
+    chapterExercisesLength: number,
+  ) => {
+    const completed = courseDetail?.completedExercises;
+
+    // If nothing is completed, enable FIRST exercise ONLY
+    if (!completed || completed.length === 0) {
+      return chapterIndex === 0 && exerciseIndex === 0;
+    }
+
+    // last completed
+    const last = completed[completed.length - 1];
+
+    // Convert to global exercise number
+    const currentExerciseNumber =
+      chapterIndex * chapterExercisesLength + exerciseIndex + 1;
+
+    const lastCompletedNumber =
+      (last.chapterId - 1) * chapterExercisesLength + last.exerciseId;
+
+    return currentExerciseNumber === lastCompletedNumber + 2;
+  };
+
+  const isExerciseCompleted=(chapterId:number,exerciseId:number)=>{
+    const completeChapters=courseDetail?.completedExercises;
+
+    const completeChapter = completeChapters?.find(item=>item.chapterId==chapterId&& item.exerciseId==exerciseId)
+
+    return completeChapter ? true : false
+  }
 
   return (
     <div>
@@ -61,8 +95,15 @@ function CourseChapters({ loading, courseDetail }: Props) {
                           </h2>
                           <h2 className="text-3xl">{exc.name}</h2>
                         </div>
-                        {/* <Button variant={'pixel'}>{exc?.xp} xp</Button> */}
-                        <Tooltip>
+                        {
+                        }
+                        {EnableExercise(index,indexExc,chapter?.exercises?.length)?
+                        <Link href={ '/courses'+'/'+courseDetail?.courseId+'/'+chapter?.chapterId+'/'+exc?.slug}> 
+                        <Button variant={'pixel'}>{exc?.xp} xp</Button>
+                        </Link>
+                        : isExerciseCompleted(chapter?.chapterId,indexExc+1)?
+                        <Button variant={'pixel'} className="bg-green-600">Completed</Button>
+                        :<Tooltip>
                           <TooltipTrigger asChild>
                             <Button variant={"pixelDisabled"}>???</Button>
                           </TooltipTrigger>
@@ -71,7 +112,7 @@ function CourseChapters({ loading, courseDetail }: Props) {
                               Please Enroll First
                             </p>
                           </TooltipContent>
-                        </Tooltip>
+                        </Tooltip>}
                       </div>
                     ))}
                   </div>
