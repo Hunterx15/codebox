@@ -14,6 +14,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import Link from "next/link";
+import { useAuth } from "@clerk/nextjs";
 
 type Props = {
   loading: boolean;
@@ -24,6 +25,9 @@ function CourseChapters({ loading, courseDetail }: Props) {
   const sortedChapters = [...(courseDetail?.chapters ?? [])].sort(
     (a, b) => a.chapterId - b.chapterId,
   );
+
+  const { has } = useAuth();
+  const hasUnlimtedAccess = has && has({ plan: "unlimited" });
 
   const EnableExercise = (
     chapterIndex: number,
@@ -75,13 +79,16 @@ function CourseChapters({ loading, courseDetail }: Props) {
                 <AccordionTrigger
                   className="p-3 hover:bg-zinc-800
                 font-game text-4xl"
-                >
-                  <div>
-                    <h2 className="h-12 w-12 bg-zinc-800 rounded-full flex items-center justify-center">
-                      {index + 1}
-                    </h2>
+                > 
+                  <div className="flex items-center justify-between w-full">
+                    <div className="flex gap-10">
+                      <h2 className="h-12 w-12 bg-zinc-800 rounded-full flex items-center justify-center">
+                        {index + 1}
+                      </h2>
+                      {chapter?.name}
+                    </div>
+                    {!hasUnlimtedAccess && index>=2 && <h2 className="font-game text-3xl text-yellow-400">Pro</h2>}
                   </div>
-                  {chapter?.name}
                 </AccordionTrigger>
                 <AccordionContent>
                   <div className="p-7 bg-zinc-900 rounded-2xl">
@@ -105,7 +112,8 @@ function CourseChapters({ loading, courseDetail }: Props) {
                           <Button variant={"pixel"} className="bg-green-600">
                             Completed
                           </Button>
-                        ) : courseDetail?.userEnrolled ? (
+                        ) : 
+                        courseDetail?.userEnrolled && (!hasUnlimtedAccess&& index<2) ? 
                           <Link
                             href={
                               "/courses" +
@@ -118,8 +126,21 @@ function CourseChapters({ loading, courseDetail }: Props) {
                             }
                           >
                             <Button variant={"pixel"}>{exc?.xp} xp</Button>
-                          </Link>
-                        ) : (
+                          </Link>:
+                          hasUnlimtedAccess &&  courseDetail?.userEnrolled?
+                          <Link
+                            href={
+                              "/courses" +
+                              "/" +
+                              courseDetail?.courseId +
+                              "/" +
+                              chapter?.chapterId +
+                              "/" +
+                              exc?.slug
+                            }
+                          >
+                            <Button variant={"pixel"}>{exc?.xp} xp</Button>
+                          </Link>:
                           <Tooltip>
                             <TooltipTrigger asChild>
                               <Button variant={"pixelDisabled"}>???</Button>
@@ -130,7 +151,7 @@ function CourseChapters({ loading, courseDetail }: Props) {
                               </p>
                             </TooltipContent>
                           </Tooltip>
-                        )}
+                        }
                       </div>
                     ))}
                   </div>
