@@ -1,36 +1,205 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 CodeBox – Learn to Code Like a Game
 
-## Getting Started
+**CodeBox** is a **game-style learning & coding platform** where users **learn concepts and write code side-by-side**.
+The platform is structured as **Courses → Chapters → Exercises**, making learning interactive, progressive, and engaging.
 
-First, run the development server:
+🌐 **Live Demo:**
+👉 [https://codebox-gamma.vercel.app/](https://codebox-gamma.vercel.app/)
+
+---
+
+## 🎮 How CodeBox Works
+
+1. Choose a **Course**
+2. Progress through **Chapters**
+3. Solve **Exercises**
+4. Write & run code **directly in the browser**
+5. Track progress and unlock more content
+
+Learning feels like a game — level by level.
+
+---
+
+## ✨ Features
+
+* 📚 **Course-based learning**
+
+  * Courses → Chapters → Exercises
+* 🧩 **Learn & code together**
+
+  * In-browser coding using **Sandpack**
+* ⚡ Live code execution & instant feedback
+* 🎮 Game-like progression system
+* 📊 **Progress tracking**
+
+  * Track completed chapters & exercises
+* 🆓 Free learning content
+* 💎 Paid plans unlock **more exercises**
+* 🔐 Secure authentication with **Clerk**
+
+  * Email & Password
+  * Google Sign-In
+* 💳 Pricing & subscriptions via **Clerk Pricing Table**
+* 🎨 Clean, pixel-inspired UI
+* 🌗 Light / Dark theme support
+* 🚀 Fully deployed & production-ready
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+* **Next.js (App Router)**
+* React 19
+* TypeScript
+* Tailwind CSS
+* shadcn/ui
+* Radix UI
+* **Sandpack (CodeSandbox)**
+* Axios
+* Lucide Icons
+
+### Backend / APIs
+
+* Next.js API Routes
+* Drizzle ORM
+* Neon (PostgreSQL)
+* REST-style APIs
+
+### Authentication & Payments
+
+* Clerk Authentication
+* Google OAuth
+* Clerk Pricing Table
+
+---
+
+## ⚡ Coding Experience
+
+* Powered by **Sandpack**
+* Code runs **entirely in the browser**
+* No setup required for learners
+* Perfect for beginners & intermediates
+
+---
+
+## 🚀 Getting Started
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/Hunterx15/codebox.git
+cd codebox
+```
+
+---
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+---
+
+### Run the Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+App runs on:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🔑 Environment Variables
 
-To learn more about Next.js, take a look at the following resources:
+Create a `.env.local` file:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```env
+# Clerk Keys
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Clerk Routes
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
 
-## Deploy on Vercel
+# Clerk Redirects
+NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/
+NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=/
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Database
+DATABASE_URL=
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 📂 Project Structure
+
+```
+codebox/
+│── app/
+│   ├── api/
+│   ├── (routes)/
+│   │   ├── courses/
+│   │   │   └── [courseId]/
+│   │   │       └── [chapterId]/
+│   │   │           └── [exerciseSlug]/
+│   │   ├── pricing/
+│   │   └── contact/
+│   ├── sign-in/
+│   ├── sign-up/
+│   └── layout.tsx
+│
+│── components/
+│── lib/
+│── public/
+│── styles/
+│── drizzle/
+│── README.md
+```
+
+---
+
+## 🆓 Free vs 💎 Paid Features
+
+| Feature                      | Free | Paid |
+| ---------------------------- | ---- | ---- |
+| Access to courses            | ✅    | ✅    |
+| In-browser coding (Sandpack) | ✅    | ✅    |
+| Progress tracking            | ✅    | ✅    |
+| Basic exercises              | ✅    | ✅    |
+| Advanced exercises           | ❌    | ✅    |
+| Full exercise library        | ❌    | ✅    |
+
+---
+
+## 🎯 Target Audience
+
+* Beginners learning to code
+* Students moving to **intermediate level**
+* Self-learners who prefer **hands-on practice**
+* Anyone who enjoys **game-style learning**
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+* Report bugs
+* Suggest improvements
+* Submit pull requests
+
+---
+
+## 📜 License
+
+MIT License © 2025
+**Author:** Hunterx15
