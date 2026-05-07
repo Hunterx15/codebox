@@ -106,7 +106,7 @@ function Header() {
                   className="grid md:grid-cols-2 gap-2 sm:w-100
               md:w-125 lg:w-150"
                 >
-                  {courses.map((course, index) => (
+                  {Array.isArray(courses) && courses.map((course, index) => (
                     <Link href={'/courses/'+course?.courseId} key={index}>
                     <div
                       className="p-2 hover:bg-accent rounded-xl cursor-pointer"

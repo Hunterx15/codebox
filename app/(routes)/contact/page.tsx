@@ -29,10 +29,10 @@ export default function ContactPage() {
                 Fastest way to reach me
               </p>
               <a
-                href="mailto:pankaj.jangid.work@gmail.com"
+                href="mailto:codebox@gmail.com"
                 className="text-yellow-400 font-medium break-all hover:underline"
               >
-                pankaj.jangid.work@gmail.com
+                codebox@gmail.com
               </a>
             </div>
 
